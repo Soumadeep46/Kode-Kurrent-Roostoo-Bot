@@ -33,8 +33,8 @@ logger = logging.getLogger("RoostooTradingBot")
 
 # Constants
 API_URL = "https://mock-api.roostoo.com"
-API_KEY = "USEAPIKEYASMYID" 
-SECRET_KEY = "S1XP1e3UZj6A7H5fATj0jNhqPxxdSJYdInClVN65XAbvqqMKjVHjA7PZj4W12oep"  
+API_KEY = "Vc5YpC0HLjVoxjRe5uKvQV38ISfmRaqnkxM1pooVfs6czH72lhgsuqF3ztf8GG8C" 
+SECRET_KEY = "OKkKp2DRKRbcMWmPw8nQoHB7ulXSAYnIS0DxTAmUB4MaQBmwk65yemeUNr0aPiR8"  
 
 # Configuration
 class Config:
@@ -139,13 +139,12 @@ class RoostooTradingBot:
         params = params or {}
         
         if auth_required:
-            # Add timestamp for authenticated requests
             params['timestamp'] = str(self._get_server_time())
-            
-            # Add authentication headers
             signature = self._sign_request(params)
-            headers['RST-API-KEY'] = self.api_key
+    
+            headers['RST-API-KEY'] = self.api_key  # Ensure this is set
             headers['MSG-SIGNATURE'] = signature
+
         
         try:
             if method == "GET":
